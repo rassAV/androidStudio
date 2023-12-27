@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(layout)
     }
 
-    private suspend fun setBackgroundWithDelay(v: ImageView) {
+    private suspend fun updateBoard(v: ImageView) {
         v.setImageResource(cardsImages[v.tag.toString().filter { it.isDigit() }.toInt() - 1])
         delay(500)
 
@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
 
     private val cardsListener: (ImageView) -> Unit = {
         lifecycleScope.launch(Dispatchers.Main) {
-            setBackgroundWithDelay(it)
+            updateBoard(it)
         }
     }
 }
